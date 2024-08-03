@@ -3,7 +3,7 @@ import SendOtpForm from "../components/templates/SendOtpForm";
 import CheckOtpForm from "../components/templates/CheckOtpForm";
 
 function AuthPage() {
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(2);
   const [mobile, setMobile] = useState("");
   const [code, setCode] = useState("");
 
@@ -12,7 +12,14 @@ function AuthPage() {
       {step === 1 && (
         <SendOtpForm setStep={setStep} mobile={mobile} setMobile={setMobile} />
       )}
-      {step === 2 && <CheckOtpForm />}
+      {step === 2 && (
+        <CheckOtpForm
+          setStep={setStep}
+          code={code}
+          setCode={setCode}
+          mobile={mobile}
+        />
+      )}
     </div>
   );
 }
