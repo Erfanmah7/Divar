@@ -4,6 +4,7 @@ import HomePages from "../pages/HomePages";
 import DashboardPages from "../pages/DashboardPages";
 import AdminPages from "../pages/AdminPages";
 import NotFoundPages from "../pages/NotFoundPages";
+import AuthPage from "../pages/AuthPage";
 
 function Router() {
   return (
@@ -11,6 +12,7 @@ function Router() {
       <Route path="/" element={<HomePages />} />
       <Route path="/dashboard" element={<DashboardPages />} />
       <Route path="/admin" element={<AdminPages />} />
+      <Route path="/auth" element={<AuthPage />} />
       <Route path="*" element={<NotFoundPages />} />
     </Routes>
   );
