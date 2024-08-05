@@ -18,4 +18,10 @@ const checkOtp = async (mobile, code) => {
   }
 };
 
+// api.interceptors.request.use(request=>{
+
+
+
+// })
+
 export { sendOtp, checkOtp };

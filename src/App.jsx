@@ -11,7 +11,7 @@ function App() {
     <BrowserRouter>
       <QueryClientProvider client={queryClient}>
         <Router />
-      <ReactQueryDevtools />
+        <ReactQueryDevtools />
       </QueryClientProvider>
     </BrowserRouter>
   );
