@@ -22,11 +22,13 @@ const checkOtp = async (mobile, code) => {
 api.interceptors.request.use(
   (request) => {
     const accessToken = getCookie("accessToken");
-    request.headers["Authorization"] = `bearer ${accessToken}`;
+    if (accessToken) {
+      request.headers["Authorization"] = `bearer ${accessToken}`;
+    }
     return request;
   },
   (error) => {
-    return new Promise.reject(error);
+    return Promise.reject(error);
   }
 );
 
