@@ -1,8 +1,10 @@
-export const defaultOptions = {
+ const defaultOptions = {
   queries: {
     refetchOnMount: false,
     refetchOnWindowFocus: false,
-    staleTime: 6000,
+    staleTime: 60000,
     retry: 1,
   },
 };
+
+export default {defaultOptions}
