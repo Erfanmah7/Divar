@@ -11,7 +11,7 @@ function CheckOtpForm({ setStep, mobile, code, setCode }) {
     if (response) {
       setCookie(response.data);
     }
-    if (error) console.log(error.response.data.message);
+    if (error) console.log(error?.response.data.message);
   };
 
   return (

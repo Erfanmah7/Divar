@@ -1,5 +1,4 @@
 import api from "../configs/api";
-import { getCookie } from "../utils/cookie";
 
 const sendOtp = async (mobile) => {
   try {
@@ -18,18 +17,5 @@ const checkOtp = async (mobile, code) => {
     return { error };
   }
 };
-
-api.interceptors.request.use(
-  (request) => {
-    const accessToken = getCookie("accessToken");
-    if (accessToken) {
-      request.headers["Authorization"] = `bearer ${accessToken}`;
-    }
-    return request;
-  },
-  (error) => {
-    return Promise.reject(error);
-  }
-);
 
 export { sendOtp, checkOtp };
