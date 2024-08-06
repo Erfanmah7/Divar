@@ -18,9 +18,4 @@ const checkOtp = async (mobile, code) => {
   }
 };
 
-<<<<<<< HEAD
-=======
-
-
->>>>>>> main
 export { sendOtp, checkOtp };
