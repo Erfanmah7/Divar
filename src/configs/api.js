@@ -1,6 +1,6 @@
 import axios from "axios";
 import { getNewToken } from "../services/token";
-import { setCookie } from "../utils/cookie";
+import { getCookie, setCookie } from "../utils/cookie";
 
 const api = axios.create({
   baseURL: import.meta.env.VITE_BASE_URI,
@@ -27,10 +27,9 @@ api.interceptors.response.use(
     return response;
   },
   async (error) => {
-    const originRequest = error?.config;
-    console.log(originRequest);
+    const originRequest = error.config;
 
-    if (error.response?.status === 401 && !originRequest._retry) {
+    if (error.response.status === 401 && !originRequest._retry) {
       originRequest._retry = true;
       const res = await getNewToken();
 
