@@ -1,6 +1,10 @@
 import axios from "axios";
+<<<<<<< HEAD
 import { getNewToken } from "../services/token";
 import { getCookie, setCookie } from "../utils/cookie";
+=======
+import { getCookie } from "../utils/cookie";
+>>>>>>> main
 
 const api = axios.create({
   baseURL: import.meta.env.VITE_BASE_URI,
@@ -13,7 +17,11 @@ api.interceptors.request.use(
   (request) => {
     const accessToken = getCookie("accessToken");
     if (accessToken) {
+<<<<<<< HEAD
       request.headers["Authorization"] = `Bearer ${accessToken}`;
+=======
+      request.headers["Authorization"] = `bearer ${accessToken}`;
+>>>>>>> main
     }
     return request;
   },
@@ -22,6 +30,7 @@ api.interceptors.request.use(
   }
 );
 
+<<<<<<< HEAD
 api.interceptors.response.use(
   (response) => {
     return response;
@@ -40,4 +49,6 @@ api.interceptors.response.use(
   }
 );
 
+=======
+>>>>>>> main
 export default api;
