@@ -19,17 +19,6 @@ const checkOtp = async (mobile, code) => {
   }
 };
 
-api.interceptors.request.use(
-  (request) => {
-    const accessToken = getCookie("accessToken");
-    if (accessToken) {
-      request.headers["Authorization"] = `bearer ${accessToken}`;
-    }
-    return request;
-  },
-  (error) => {
-    return Promise.reject(error);
-  }
-);
+
 
 export { sendOtp, checkOtp };
