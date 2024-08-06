@@ -4,6 +4,7 @@ import { setCookie } from "../../utils/cookie";
 import { useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { getProfile } from "../../services/user";
+import styles from "./checkOtpForm.module.css";
 
 function CheckOtpForm({ setStep, mobile, code, setCode }) {
   const { refetch } = useQuery(["profile"], getProfile);
@@ -23,7 +24,7 @@ function CheckOtpForm({ setStep, mobile, code, setCode }) {
   };
 
   return (
-    <form onSubmit={submitHandler}>
+    <form className={styles.form} onSubmit={submitHandler}>
       <p>تأیید کد اس ام اس شده</p>
       <span>کد پیامک شده به شماره «{mobile}» را وارد کنید.</span>
       <label htmlFor="input">کد تأیید را وارد کنید</label>
@@ -35,7 +36,9 @@ function CheckOtpForm({ setStep, mobile, code, setCode }) {
         id="input"
       />
       <button type="submit">ورود</button>
-      <button onClick={() => setStep(1)}>تغییر شماره موبایل</button>
+      <button className={styles.backButton} onClick={() => setStep(1)}>
+        تغییر شماره موبایل
+      </button>
     </form>
   );
 }
