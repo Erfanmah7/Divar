@@ -9,7 +9,7 @@ function CategoryForm() {
   const queryClient = useQueryClient();
 
   const { mutate, isLoading, error, data } = useMutation(addCategory, {
-    //again post query get
+    //again post query get invalidat
     onSuccess: () => queryClient.invalidateQueries("category-api"),
   });
   //   console.log({ isLoading, error, data });
