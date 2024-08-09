@@ -7,12 +7,13 @@ import NotFoundPages from "../pages/NotFoundPages";
 import AuthPage from "../pages/AuthPage";
 import { useQuery } from "@tanstack/react-query";
 import { getProfile } from "../services/user";
-import Loader from "../components/templates/module/Loader";
+import Loader from "../components/module/Loader";
+
 
 function Router() {
   const { data, isLoading, error } = useQuery(["profile"], getProfile);
-  console.log({ data, isLoading, error });
-  if (isLoading) return <Loader />;
+  // console.log({ data, isLoading, error });
+  if (isLoading) return <Loader/>;
 
   return (
     <Routes>
