@@ -21,7 +21,7 @@ function AddPost() {
 
   const addHandler = (e) => {
     e.preventDefault();
-    console.log({ ...form });
+    console.log(form);
   };
 
   const { data } = useQuery(["category-api"], getCategory);
