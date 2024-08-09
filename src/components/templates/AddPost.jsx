@@ -16,12 +16,12 @@ function AddPost() {
   const changeHandler = (e) => {
     const name = e.target.name;
     if (name !== "image") setForm({ ...form, [name]: e.target.value });
-    else setForm(e.target.files[0]);
+    else setForm({ ...form, [name]: e.target.files[0] });
   };
 
   const addHandler = (e) => {
     e.preventDefault();
-    console.log(form);
+    console.log({ ...form });
   };
 
   const { data } = useQuery(["category-api"], getCategory);
