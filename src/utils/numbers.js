@@ -10,5 +10,5 @@ const sp = (number) => {
   const joinedNumber = seperatedNumber.join(",");
   return e2p(joinedNumber);
 };
-
+ 
 export { e2p, p2e, sp };
