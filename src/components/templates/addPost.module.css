@@ -35,6 +35,10 @@
   cursor: pointer;
 }
 
+.form button:disabled {
+  opacity: 0.5;
+}
+
 input,
 button,
 select {

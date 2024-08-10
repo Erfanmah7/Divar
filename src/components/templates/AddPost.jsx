@@ -2,30 +2,57 @@ import React, { useState } from "react";
 import { getCategory } from "../../services/admin";
 import { useQuery } from "@tanstack/react-query";
 import styles from "./addPost.module.css";
+import axios from "axios";
+import { getCookie } from "../../utils/cookie";
+import toast from "react-hot-toast";
 
 function AddPost() {
+  const { data, isLoading } = useQuery(["category-api"], getCategory);
+  //   console.log({ data });
+
   const [form, setForm] = useState({
     title: "",
     content: "",
-    amount: null,
-    city: "",
     category: "",
-    image: null,
+    city: "",
+    amount: null,
+    images: null,
   });
 
   const changeHandler = (e) => {
     const name = e.target.name;
-    if (name !== "image") setForm({ ...form, [name]: e.target.value });
+    if (name !== "images") setForm({ ...form, [name]: e.target.value });
     else setForm({ ...form, [name]: e.target.files[0] });
   };
 
   const addHandler = (e) => {
     e.preventDefault();
-    console.log(form);
+    const formData = new FormData();
+    for (let i in form) {
+      formData.append(i, form[i]);
+    }
+    const token = getCookie("accessToken");
+    axios
+      .post(`${import.meta.env.VITE_BASE_URI}post/create`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        toast.success(res.data.message);
+        setForm({
+          title: "",
+          content: "",
+          category: "",
+          city: "",
+          amount: null,
+          images: null,
+        });
+        e.target.value = ""
+      })
+      .catch((error) => toast.error("مشکلی پیش آمده است"));
   };
-
-  const { data } = useQuery(["category-api"], getCategory);
-  //   console.log({ data });
 
   return (
     <form onChange={changeHandler} className={styles.form}>
@@ -46,11 +73,12 @@ function AddPost() {
           </option>
         ))}
       </select>
-      <label htmlFor="image">عکس</label>
-      <input type="file" name="image" id="image" />
-      <button onClick={addHandler}>ایجاد</button>
+      <label htmlFor="images">عکس</label>
+      <input type="file" name="images" id="images" />
+      <button onClick={addHandler} disabled={isLoading}>
+        ایجاد
+      </button>
     </form>
   );
 }
-
 export default AddPost;
